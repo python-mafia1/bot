@@ -1,3 +1,4 @@
+import os
 import socket
 
 def check_port(host, port, is_udp=False):
@@ -14,8 +15,11 @@ def check_port(host, port, is_udp=False):
     finally:
         sock.close()
 
-host = "heygenstream-lnczb0yw.livekit.cloud"
+# host = "heygenstream-lnczb0yw.livekit.cloud"
+from dotenv import load_dotenv
 
+load_dotenv()
+host = os.getenv("HOST")
 # Check TCP 7880
 check_port(host, 7880)
 

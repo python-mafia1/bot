@@ -4,6 +4,7 @@ import time
 import logging
 
 from playsound import playsound
+from dotenv import load_dotenv
 from gtts import gTTS
 from selenium.common import TimeoutException
 from selenium.webdriver.common.action_chains import ActionChains
@@ -19,6 +20,7 @@ logging.basicConfig(
     format='%(asctime)s - %(levelname)s - %(message)s',
 )
 
+load_dotenv()
 logger = logging.getLogger(__name__)
 
 class JoinZoomMeeting:
@@ -461,8 +463,8 @@ class JoinZoomMeeting:
             # Close the browser
             driver.quit()
             logger.info('browser closed.')
+#MEETING_URL = https://us05web.zoom.us/j/81927147841?pwd=QUZJi3Wj2DsAMXb0gLeJVaTXB0j4Zf.1
 
-
-meeting_url = "https://us05web.zoom.us/j/81927147841?pwd=QUZJi3Wj2DsAMXb0gLeJVaTXB0j4Zf.1"
+meeting_url = os.getenv("MEETING_URL")
 meeting = JoinZoomMeeting(meeting_url)
 meeting.join_zoom_meeting()
